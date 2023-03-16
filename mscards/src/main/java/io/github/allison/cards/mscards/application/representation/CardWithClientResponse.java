@@ -20,9 +20,9 @@ public class CardWithClientResponse {
 
     public static CardWithClientResponse fromModel(ClientCard model){
         return new CardWithClientResponse(
-                model.getCards().getName(),
-                model.getCards().getFlag().toString(),
-                model.getLimit()
+                model.getCard().getName(),
+                model.getCard().getFlag().toString(),
+                model.getLimitCard()
 
         );
 

@@ -15,9 +15,9 @@ public class CardSaveRequest {
 
     private BigDecimal income;
 
-    private BigDecimal limit;
+    private BigDecimal limitValue;
 
     public Card toModel(){
-        return new Card(name, flag,income,limit);
+        return new Card(name, flag,income,limitValue);
     }
 }
