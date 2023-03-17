@@ -2,6 +2,7 @@ spring:
   application:
     name: mscards
 
+
 server:
   port: 0
 
@@ -12,3 +13,10 @@ eureka:
 
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+
+mq:
+  queues:
+    emission-cards: emission-cards
+
+
