@@ -7,6 +7,7 @@ import io.github.allison.cards.mscards.domain.Card;
 import io.github.allison.cards.mscards.domain.ClientCard;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("cards")
 @RequiredArgsConstructor
+
 public class CardsController {
 
     private final CardService cardService;
@@ -41,9 +43,8 @@ public class CardsController {
     }
 
     @GetMapping(params = "cpf")
-    public ResponseEntity<List<CardWithClientResponse>> getCardsByClient(
-            @RequestParam("cpf") String cpf){
-        List<ClientCard> list = clientCardService.listCardByCpf(cpf);
+    public ResponseEntity<List<CardWithClientResponse>> getCardsByClient(@RequestParam("cpf") String cpf){
+        List<ClientCard> list = clientCardService.listCardsByCpf(cpf);
         List<CardWithClientResponse> resultList = list.stream()
                 .map(CardWithClientResponse::fromModel)
                 .collect(Collectors.toList());

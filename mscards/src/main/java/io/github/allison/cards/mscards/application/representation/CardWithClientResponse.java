@@ -15,14 +15,14 @@ public class CardWithClientResponse {
 
     private String name;
     private String flag;
-    private BigDecimal limitReleased;
+    private BigDecimal limitRelease;
 
 
     public static CardWithClientResponse fromModel(ClientCard model){
         return new CardWithClientResponse(
                 model.getCard().getName(),
                 model.getCard().getFlag().toString(),
-                model.getLimitCard()
+                model.getLimite()
 
         );
 

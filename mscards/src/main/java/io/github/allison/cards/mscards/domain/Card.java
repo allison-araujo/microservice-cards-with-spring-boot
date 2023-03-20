@@ -22,12 +22,12 @@ public class Card {
 
     private FlagCard flag;
     private BigDecimal income;
-    private BigDecimal basicLimit;
+    private BigDecimal limitBasic;
 
     public Card(String name, FlagCard flag, BigDecimal income, BigDecimal basicLimit) {
         this.name = name;
         this.flag = flag;
         this.income = income;
-        this.basicLimit = basicLimit;
+        this.limitBasic = basicLimit;
     }
 }
