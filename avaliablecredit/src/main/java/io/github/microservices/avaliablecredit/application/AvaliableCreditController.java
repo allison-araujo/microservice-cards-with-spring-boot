@@ -3,13 +3,12 @@ package io.github.microservices.avaliablecredit.application;
 
 import io.github.microservices.avaliablecredit.application.exception.DadosClientNotFoundException;
 import io.github.microservices.avaliablecredit.application.exception.ErrorCommunicationMicroservicesException;
-import io.github.microservices.avaliablecredit.domain.model.DataAssessment;
-import io.github.microservices.avaliablecredit.domain.model.ReturnAssesstimentClient;
+import io.github.microservices.avaliablecredit.application.exception.ErrorRequestCardsException;
+import io.github.microservices.avaliablecredit.domain.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import io.github.microservices.avaliablecredit.domain.model.SituationClient;
 
 
 @RestController
@@ -51,6 +50,20 @@ public class AvaliableCreditController {
             return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
         }
 
+    }
+
+
+    @PostMapping("request-cards")
+    public ResponseEntity requestCard(@RequestBody DataRequestEmissionCards datas){
+        try{
+            ProtocolRequestCards protocolRequestCards = avaliableCreditService
+                    .requestEmissionCards(datas);
+            return ResponseEntity.ok(protocolRequestCards);
+
+        }catch(ErrorRequestCardsException e){
+            return ResponseEntity.internalServerError().body(e.getMessage());
+
+        }
     }
 
 

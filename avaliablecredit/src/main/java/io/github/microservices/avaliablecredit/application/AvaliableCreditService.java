@@ -4,9 +4,11 @@ package io.github.microservices.avaliablecredit.application;
 import feign.FeignException;
 import io.github.microservices.avaliablecredit.application.exception.DadosClientNotFoundException;
 import io.github.microservices.avaliablecredit.application.exception.ErrorCommunicationMicroservicesException;
+import io.github.microservices.avaliablecredit.application.exception.ErrorRequestCardsException;
 import io.github.microservices.avaliablecredit.domain.model.*;
 import io.github.microservices.avaliablecredit.infra.clients.CardsResourceClient;
 import io.github.microservices.avaliablecredit.infra.clients.ClientResourceClient;
+import io.github.microservices.avaliablecredit.infra.mqueue.RequestCardsPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,13 +25,14 @@ public class AvaliableCreditService {
 
     private final ClientResourceClient resourceClient;
     private final CardsResourceClient cardsClient;
+    private final RequestCardsPublisher requestCardsPublisher;
 
 
     public SituationClient getSituationClient(String cpf)
             throws DadosClientNotFoundException , ErrorCommunicationMicroservicesException {
         try {
             ResponseEntity<DataClient> dataClientResponse = resourceClient.dataClient(cpf);
-            ResponseEntity<List<CardClient>> cardResponse = cardsClient.getCardByClient(cpf);
+            ResponseEntity<List<CardClient>> cardResponse = cardsClient.getCardsByClient(cpf);
 
             return SituationClient
                     .builder()
@@ -89,5 +93,17 @@ public class AvaliableCreditService {
     }
 
 
+    public ProtocolRequestCards requestEmissionCards(DataRequestEmissionCards data){
+        try{
+            requestCardsPublisher.RequestCards(data);
+            var protocol = UUID.randomUUID().toString();
+            return new ProtocolRequestCards(protocol);
+
+        }catch(Exception e ){
+            throw new ErrorRequestCardsException(e.getMessage());
+
+
+        }
+    }
 
 }
