@@ -15,11 +15,11 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
 
-    @Column
+
     private String cpf;
-    @Column
+
     private String name;
-    @Column
+
     private Integer age;
 
 
