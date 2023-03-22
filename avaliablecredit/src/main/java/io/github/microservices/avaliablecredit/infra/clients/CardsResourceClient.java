@@ -14,10 +14,10 @@ import java.util.List;
 public interface CardsResourceClient {
 
     @GetMapping(params = "cpf")
-    ResponseEntity<List<CardClient>> getCardByClient(@RequestParam("cpf") String cpf);
+    ResponseEntity<List<CardClient>> getCardsByClient(@RequestParam("cpf") String cpf);
 
     @GetMapping(params = "income")
-    public ResponseEntity<List<Card>> getCardsIncomeLimit(@RequestParam("income") Long income);
+    ResponseEntity<List<Card>> getCardsIncomeLimit(@RequestParam("income") Long income);
 
 
 

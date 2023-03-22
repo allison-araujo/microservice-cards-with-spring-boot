@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+
 public class RequestCardsPublisher {
 
     private final RabbitTemplate rabbitTemplate;
@@ -20,6 +21,7 @@ public class RequestCardsPublisher {
         var json = convertIntoJson(data);
         rabbitTemplate.convertAndSend(queueEmissionCards.getName(), json);
     }
+
 
     private String convertIntoJson(DataRequestEmissionCards values) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
