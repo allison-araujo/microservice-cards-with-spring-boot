@@ -15,7 +15,7 @@ import java.net.URI;
 @RequestMapping("client")
 @RequiredArgsConstructor
 @Slf4j
-public class ClientResource {
+public class ClientController {
 
     private final ClienteService service;
 

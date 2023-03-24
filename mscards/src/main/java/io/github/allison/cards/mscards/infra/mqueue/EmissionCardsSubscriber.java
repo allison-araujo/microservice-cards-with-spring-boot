@@ -10,6 +10,7 @@ import io.github.allison.cards.mscards.domain.DataRequestEmissionCards;
 import io.github.allison.cards.mscards.infra.repository.CardRepository;
 import io.github.allison.cards.mscards.infra.repository.ClientCardRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class EmissionCardsSubscriber {
 
     private final CardRepository cardRepository;
@@ -35,7 +37,7 @@ public class EmissionCardsSubscriber {
             clientCardRepository.save(clientCard);
 
         }catch(Exception e){
-            e.printStackTrace();
+           log.error("Error ao received request emission cards: {} ", e.getMessage());
         }
     }
 }
