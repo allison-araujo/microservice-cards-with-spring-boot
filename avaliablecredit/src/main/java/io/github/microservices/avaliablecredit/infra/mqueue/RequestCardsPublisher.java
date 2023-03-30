@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 
 public class RequestCardsPublisher {
-
     private final RabbitTemplate rabbitTemplate;
     private final Queue queueEmissionCards;
 

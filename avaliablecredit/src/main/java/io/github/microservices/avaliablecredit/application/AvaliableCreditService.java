@@ -59,8 +59,6 @@ public class AvaliableCreditService {
 
             List<Card> cards = cardsResponse.getBody();
             var listCardApproved =  cards.stream().map(card -> {
-
-
                 DataClient dataClient = dataClientResponse.getBody();
 
                 BigDecimal limitBasic = card.getLimitBasic();
@@ -80,7 +78,6 @@ public class AvaliableCreditService {
 
             return new ReturnAssesstimentClient(listCardApproved);
 
-
         } catch (FeignException.FeignClientException e) {
             int status = e.status();
             if (HttpStatus.NOT_FOUND.value() == status) {
@@ -88,11 +85,8 @@ public class AvaliableCreditService {
             }
 
             throw new ErrorCommunicationMicroservicesException(e.getMessage(), status);
-
         }
     }
-
-
     public ProtocolRequestCards requestEmissionCards(DataRequestEmissionCards data){
         try{
             requestCardsPublisher.RequestCards(data);
