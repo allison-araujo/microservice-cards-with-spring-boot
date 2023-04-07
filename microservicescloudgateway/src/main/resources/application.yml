@@ -12,7 +12,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8082/realms/mscourserealm
+          issuer-uri: http://localhost:8081/realms/mscourserealm
+
 
 server:
   port: 8080
@@ -22,4 +23,4 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://microservice-eureka:rv-meeaocrireecsuki@localhost:8761/eureka
+      defaultZone: http://microservice-eureka:rv-meeaocrireecsuki@${EUREKA_SERVER}:8761/eureka
