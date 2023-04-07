@@ -2,12 +2,10 @@ spring:
   application:
     name: mscards
   rabbitmq:
-    host: rabbitmq-container
+    host: ${RABBITMQ_SERVER}
     port: 5672
     username: guest
     password: guest
-
-
 
 server:
   port: 0
@@ -15,7 +13,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://microservice-eureka:rv-meeaocrireecsuki@ms-container-eureka:8761/eureka
+      defaultZone: http://microservice-eureka:rv-meeaocrireecsuki@${EUREKA_SERVER}:8761/eureka
 
 
   instance:
