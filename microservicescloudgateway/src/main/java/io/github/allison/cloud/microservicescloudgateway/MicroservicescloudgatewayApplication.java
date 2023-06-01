@@ -23,7 +23,6 @@ public class MicroservicescloudgatewayApplication {
 				.route(r -> r.path("/client/**").uri("lb://msclient") )
 				.route(r -> r.path("/cards/**").uri("lb://mscards"))
 				.route(r -> r.path("/avaliable-credit/**").uri("lb://msavaliablecredit"))
-
 				.build();
 	}
 

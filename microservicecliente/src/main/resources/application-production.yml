@@ -1,26 +1,18 @@
 spring:
   application:
-    name: msavaliablecredit
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    name: msclient
 
 server:
   port: 0
 
+
 eureka:
   client:
     service-url:
-      defaultZone: http://microservice-eureka:rv-meeaocrireecsuki@localhost:8761/eureka
+      defaultZone: http://microservice-eureka:rv-meeaocrireecsuki@${EUREKA_SERVER}:8761/eureka
 
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-
-mq:
-  queues:
-    emission-cards: emission-cards
 
 management:
   endpoints:
