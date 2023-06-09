@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: microservice-eureka
+  security:
+    basic:
+      enable: true
+    user:
+      name: microservice-eureka
+      password: rv-meeaocrireecsuki
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

@@ -17,17 +17,40 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>eurekaserver</module>
-        <module>microservicescloudgateway</module>
-        <module>microservicecliente</module>
-        <module>mscards</module>
-        <module>avaliablecredit</module>
+        <module>microservice-eureka</module>
+        <module>microservices-cloud-gateway</module>
+        <module>microservice-client</module>
+        <module>microservice-cards</module>
+        <module>microservice-avaliablecredit</module>
     </modules>
 
     <properties>
        <java.version>11</java.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>

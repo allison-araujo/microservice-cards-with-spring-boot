@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: microservice-avaliablecredit
+
+  rabbitmq:
+    host: ${RABBITMQ_SERVER}
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://microservice-eureka:rv-meeaocrireecsuki@${EUREKA_SERVER}:8761/eureka
+
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+mq:
+  queues:
+    emission-cards: emission-cards
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  charset:
+    file:
+      name: ./logs/log-file.log
